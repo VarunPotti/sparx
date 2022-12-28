@@ -1,7 +1,7 @@
 use config::Config;
 use log::{debug, info};
 
-use crate::{cli::build_cli, commands::init::init};
+use crate::{cli::build_cli, commands::create::create};
 
 mod cli;
 mod commands;
@@ -14,7 +14,7 @@ async fn try_main() -> anyhow::Result<()> {
     let matches = build_cli()?;
 
     match matches.subcommand() {
-        Some(("init", matches)) => {
+        Some(("create", matches)) => {
             debug!("init command");
 
             let template = matches.get_one::<String>("template-name").unwrap();
@@ -31,7 +31,7 @@ async fn try_main() -> anyhow::Result<()> {
                 variables_map.insert(key.to_string(), value.to_string());
             }
 
-            init(
+            create(
                 template.to_string(),
                 name.to_string(),
                 directory.to_string(),

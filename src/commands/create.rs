@@ -8,7 +8,7 @@ pub fn replace_contents(content: String, to_replace: String, value: String, case
     content
 }
 
-pub async fn init(
+pub async fn create(
     template_name: String,
     name: String,
     directory: String,
@@ -41,6 +41,10 @@ pub async fn init(
         "upper_flat",
         "alternating",
     ];
+
+    if !directory_path.parent().unwrap().exists() {
+        std::fs::create_dir_all(directory_path.parent().unwrap())?;
+    }
 
     // copy the contents of the template directory to the directory path
     copy_dir::copy_dir(&template_dir, &directory_path)?;

@@ -2,7 +2,7 @@ use clap::{command, Arg, ArgGroup, ArgMatches, Command};
 
 pub fn build_cli() -> anyhow::Result<ArgMatches> {
     let matches= command!().author("Varun Potti")
-        .subcommand(Command::new("init").about(
+        .subcommand(Command::new("create").about(
             "Create a new set of files/folders based on rules specified in the .sparx directory",
         ).long_about(
             "Create a new set of files/folders based on rules specified in the .sparx directory"
